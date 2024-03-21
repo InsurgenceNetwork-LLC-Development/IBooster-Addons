@@ -24,9 +24,6 @@ Shop_Item_Restriction = {
   }
 }
 
-function onAddonStart()
-end
-
 utils.subscribeToEvent("net.brcdev.shopgui.event.ShopPreTransactionEvent", function(event)
 
   if event:getShopAction() == ShopManager.ShopAction.BUY then
