@@ -24,7 +24,7 @@ utils.subscribeToEvent("me.gypopo.economyshopgui.api.events.PreTransactionEvent"
   local multi = boosterUtils.getMulti(event:getPlayer(), "Sell", NAMESPACE)
   
   if multi > 0 then
-    if transactionType == Transaction.Type.SELL_GUI_SCREEN or Transaction.Type.SELL_ALL_SCREEN or Transaction.Type.SELL_ALL_COMMAND then
+    if transactionType == Transaction.Type.SELL_GUI_SCREEN or transactionType == Transaction.Type.SELL_ALL_SCREEN or transactionType == Transaction.Type.SELL_ALL_COMMAND then
         local prices = event:getPrices()
         for k, v in pairs(prices) do
             prices[k] = boosterUtils.calculateAmount(v, multi)

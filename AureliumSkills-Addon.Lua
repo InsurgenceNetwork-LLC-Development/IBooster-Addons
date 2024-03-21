@@ -1,14 +1,14 @@
-name = "AureliumSkills-Addon"
+name = "AuraSkills-Addon"
 version = "1.0.0"
 author = "Hxtch"
 description = {
   "This addon will add",
-  "Support for AureliumSkills boosting"
+  "Support for AuraSkills boosting"
 }
 
-local NAMESPACE = "AURELIUM_SKILLS"
+local NAMESPACE = "AURA_SKILLS"
 
-utils.subscribeToEvent("com.archyx.aureliumskills.api.event.XpGainEvent", function(event)
+utils.subscribeToEvent("dev.aurelium.auraskills.api.event.skill.XpGainEvent", function(event)
   local multi = boosterUtils.getMulti(event:getPlayer(), "Skills", NAMESPACE)
   
   if multi > 0 then
