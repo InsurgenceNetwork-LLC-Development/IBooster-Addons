@@ -14,7 +14,7 @@ utils.subscribeToEvent("io.github.battlepass.api.events.user.UserQuestProgressio
   local multi = boosterUtils.getMulti(event:getUser():getPlayer(), "Quests", NAMESPACE)
   
   if multi > 0 then
-    event:setAddedProgress(event:getAddedProgress():multiply(BigInteger(string.format(multi))))
+    event:getAddedProgress():multiply(BigInteger(string.format(multi)))
   end
 
 end)
