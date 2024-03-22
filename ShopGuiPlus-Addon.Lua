@@ -36,7 +36,7 @@ utils.subscribeToEvent("net.brcdev.shopgui.event.ShopPreTransactionEvent", funct
   end
 
   local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), "Sell", NAMESPACE)
-  
+
   if multi > 0 and canBoost(event) then
     event:setPrice(boosterUtils.calculateAmount(amount, multi))
   end

@@ -8,29 +8,18 @@ description = {
 
 local NAMESPACE = "RIVAL_PICKAXES"
 
-utils.subscribeToEvent("me.rivaldev.pickaxes.api.events.PickaxeEssenceReceiveEnchantEvent", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "Essence", NAMESPACE)
-  
-  if multi > 0 then
-    event:setEssence(boosterUtils.calculateAmount(event:getEssence(), multi))
-  end
+function onAddonStart()
+	subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeMoneyReceiveEnchant", "Money", "getMoney", "setMoney")
+    subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeEssenceReceiveEnchantEvent", "Essence", "getEssence", "setEssence")
+    subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeXPGainEvent", "XP", "getXP", "setXP")
+end
 
-end)
+function subscribeAndBoost(eventName, currencyType, getMethod, setMethod)
+    utils.subscribeToEvent(eventName, function(event)
+        local multi = boosterUtils.getMulti(event:getPlayer(), currencyType, NAMESPACE)
 
-utils.subscribeToEvent("me.rivaldev.pickaxes.api.events.PickaxeMoneyReceiveEnchant", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "Money", NAMESPACE)
-  
-  if multi > 0 then
-    event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
-  end
-
-end)
-
-utils.subscribeToEvent("me.rivaldev.pickaxes.api.events.PickaxeXPGainEvent", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "XP", NAMESPACE)
-  
-  if multi > 0 then
-    event:setXP(boosterUtils.calculateAmount(event:getXP(), multi))
-  end
-
-end)
+        if multi > 0 then
+            event[setMethod](event, boosterUtils.calculateAmount(amount, multi))
+        end
+    end)
+end

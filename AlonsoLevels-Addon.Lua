@@ -12,7 +12,7 @@ local NAMESPACE = "ALONSO_LEVELS"
 
 utils.subscribeToEvent("com.alonsoaliaga.alonsolevels.api.events.ExperienceChangeEvent", function(event)
   local multi = boosterUtils.getMulti(event:getPlayer(), "Levels", NAMESPACE)
-  
+
   if multi > 0 then
     AlonsoLevelsAPI:setExperience(event:getPlayer():getUniqueId(), event.getOldExperience() + boosterUtils.calculateAmount(difference, multi));
   end

@@ -10,44 +10,23 @@ description = {
 
 local NAMESPACE = "JOBS_REBORN"
 
-utils.subscribeToEvent("com.gamingmesh.jobs.api.JobsPaymentEvent", function(event)
-  local amount = event:getPayment():get(CurrencyType.EXP)
-  if amount <= 0 then
-    return
-  end
+function onAddonStart()
+	subscribeAndBoost(CurrencyType.EXP)
+	subscribeAndBoost(CurrencyType.MONEY)
+	subscribeAndBoost(CurrencyType.POINTS)
+end
 
-  local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), "Exp", NAMESPACE)
-  
-  if multi > 0 then
-    event:set(CurrencyType.EXP, boosterUtils.calculateAmount(amount, multi))
-  end
+function subscribeAndBoost(currencyType)
+    utils.subscribeToEvent("com.gamingmesh.jobs.api.JobsPaymentEvent", function(event)
+        local amount = event:getPayment():get(currencyType)
+        if amount <= 0 then
+            return
+        end
 
-end)
+        local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), currencyType, NAMESPACE)
 
-utils.subscribeToEvent("com.gamingmesh.jobs.api.JobsPaymentEvent", function(event)
-  local amount = event:getPayment():get(CurrencyType.MONEY)
-  if amount <= 0 then
-    return
-  end
-
-  local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), "Money", NAMESPACE)
-  
-  if multi > 0 then
-    event:set(CurrencyType.MONEY, boosterUtils.calculateAmount(amount, multi))
-  end
-
-end)
-
-utils.subscribeToEvent("com.gamingmesh.jobs.api.JobsPaymentEvent", function(event)
-  local amount = event:getPayment():get(CurrencyType.POINTS)
-  if amount <= 0 then
-    return
-  end
-
-  local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), "Points", NAMESPACE)
-  
-  if multi > 0 then
-    event:set(CurrencyType.POINTS, boosterUtils.calculateAmount(amount, multi))
-  end
-
-end)
+        if multi > 0 then
+            event:set(currencyType, boosterUtils.calculateAmount(amount, multi))
+        end
+    end)
+end

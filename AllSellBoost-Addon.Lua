@@ -11,75 +11,54 @@ local NAMESPACE = "GENERAL_SELL"
 function onAddonStart()
 
     if Common:doesPluginExist("ZithiumCollector") then
-
-        utils.subscribeToEvent("net.zithium.collectors.events.CollectorAutoSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setTotalWorth(boosterUtils.calculateAmount(event:getTotalWorth(), multi))
-            end
-        end)
-
-        utils.subscribeToEvent("net.zithium.collectors.events.CollectorSellAllEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setTotalWorth(boosterUtils.calculateAmount(event:getTotalWorth(), multi))
-            end
-        end)
-
-        utils.subscribeToEvent("net.zithium.collectors.events.CollectorSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setTotalWorth(boosterUtils.calculateAmount(event:getTotalWorth(), multi))
-            end
-        end)
-
+        subscribeAndBoost("com.zithium.collector.api.events.CollectorSellEvent", "getPrice", "setPrice")
+        subscribeAndBoost("com.zithium.collector.api.events.CollectorSellAllEvent", "getTotalWorth", "setTotalWorth")
+        subscribeAndBoost("com.zithium.collector.api.events.CollectorAutoSellEvent", "getTotalWorth", "setTotalWorth")
     end
 
     if Common:doesPluginExist("WildTools") then
-
-        utils.subscribeToEvent("com.bgsoftware.wildtools.api.events.HarvesterHoeSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setPrice(boosterUtils.calculateAmount(event:getPrice(), multi))
-            end
-        end)
-
-        utils.subscribeToEvent("com.bgsoftware.wildtools.api.events.SellWandUseEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setPrice(boosterUtils.calculateAmount(event:getPrice(), multi))
-            end
-        end)
-
+        subscribeAndBoost("com.bgsoftware.wildtools.api.events.HarvesterHoeSellEvent", "getPrice", "setPrice")
+        subscribeAndBoost("com.bgsoftware.wildtools.api.events.SellWandUseEvent", "getPrice", "setPrice")
     end
 
     if Common:doesPluginExist("WildChests") then
-
-        utils.subscribeToEvent("com.bgsoftware.wildchests.api.events.SellChestTaskEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setMultiplier(event:getMultiplier() + multi)
-            end
-        end)
-
+        subscribeAndBoost("com.bgsoftware.wildchests.api.events.SellChestTaskEvent", "getMultiplier", "setMultiplier")
     end
 
     if Common:doesPluginExist("VirtualSpawner") then
+       subscribeAndBoost("net.codava.virtualspawner.api.event.PreSpawnerSellEvent", "getAmount", "setAmount")
+    end
 
-        utils.subscribeToEvent("net.codava.virtualspawner.api.event.PreSpawnerSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
+    if Common:doesPluginExist("ManifestCollector") then
+       subscribeAndBoost("com.bgsoftware.manifestcollector.api.events.CollectorSellEvent", "getPrice", "setPrice")
+    end
 
-            if multi > 0 then
-                event:setAmount(boosterUtils.calculateAmount(event:getAmount(), multi))
-            end
-        end)
+    if Common:doesPluginExist("Sellwand") then
+       subscribeAndBoost("me.zachary.sellwand.api.events.SellwandSellEvent", "getSellPrice", "setSellPrice")
+    end
 
+    if Common:doesPluginExist("ChunkCollector") then
+        subscribeAndBoost("dev.kbejj.chunkcollector.events.CollectorSellEvent", "getSellPrice", "setSellPrice")
+    end
+
+    if Common:doesPluginExist("DeluxeSellwands") then
+        subscribeAndBoost("dev.norska.dsw.api.DeluxeSellwandSellEvent", "getMoney", "setMoney")
+    end
+
+    if Common:doesPluginExist("RivalFishingRods") then
+        subscribeAndBoost("me.rivaldev.fishingrods.api.events.FishingRodEssenceReceiveEnchantEvent", "getEssence", "setEssence")
+    end
+
+    if Common:doesPluginExist("RivalHarvesterHoes") then
+        subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceiveEnchant", "getEssence", "setEssence")
+    end
+
+    if Common:doesPluginExist("RivalMobSwords") then
+        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordEssenceReceiveEvent", "getEssence", "setEssence")
+    end
+
+    if Common:doesPluginExist("RivalPickaxes") then
+        subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeEssenceReceiveEnchant", "getEssence", "setEssence")
     end
 
     if Common:doesPluginExist("ShopGUIPlus") then
@@ -107,30 +86,6 @@ function onAddonStart()
 
     end
 
-    if Common:doesPluginExist("Sellwand") then
-
-        utils.subscribeToEvent("me.zachary.sellwand.api.events.SellwandSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setSellPrice(boosterUtils.calculateAmount(event:getSellPrice(), multi))
-            end
-        end)
-
-    end
-
-    if Common:doesPluginExist("ManifestCollector") then
-
-        utils.subscribeToEvent("org.hassan.plugin.collector.event.CollectorSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setPrice(boosterUtils.calculateAmount(event:getPrice(), multi))
-            end
-        end)
-
-    end
-
     if Common:doesPluginExist("JobsReborn") then
 
         import 'com.gamingmesh.jobs.container.CurrencyType'
@@ -145,30 +100,6 @@ function onAddonStart()
 
             if multi > 0 then
                 event:set(CurrencyType.MONEY, boosterUtils.calculateAmount(amount, multi))
-            end
-        end)
-
-    end
-
-    if Common:doesPluginExist("ChunkCollector") then
-
-        utils.subscribeToEvent("dev.kbejj.chunkcollector.events.CollectorAutoSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getOfflinePlayer():getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setSellPrice(boosterUtils.calculateAmount(event:getSellPrice(), multi))
-            end
-        end)
-
-    end
-
-    if Common:doesPluginExist("DeluxeSellwands") then
-
-        utils.subscribeToEvent("dev.norska.dsw.api.DeluxeSellwandSellEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
             end
         end)
 
@@ -207,53 +138,14 @@ function onAddonStart()
 
     end
 
-    if Common:doesPluginExist("RivalFishingRods") then
+end
 
-        utils.subscribeToEvent("me.rivaldev.fishingrod.rivalfishingrods.api.RodMoneyReceiveEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
+function subscribeAndBoost(eventName , getType, setType)
+    utils.subscribeToEvent(eventName, function(event)
+        local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
 
-            if multi > 0 then
-                event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
-            end
-        end)
-      
-    end
-
-    if Common:doesPluginExist("RivalHarvesterHoes") then
-
-        utils.subscribeToEvent("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
-            end
-        end)
-
-    end
-
-    if Common:doesPluginExist("RivalMobSwords") then
-
-        utils.subscribeToEvent("me.rivaldev.mobsword.rivalmobswords.api.SwordMoneyReceiveEvent", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
-            end
-
-        end)
-
-    end
-
-    if Common:doesPluginExist("RivalPickaxes") then
-
-        utils.subscribeToEvent("me.rivaldev.pickaxes.api.events.PickaxeMoneyReceiveEnchant", function(event)
-            local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
-
-            if multi > 0 then
-                event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
-            end
-        end)
-
-    end
-
+        if multi > 0 then
+            event[setType](event, boosterUtils.calculateAmount(event[getType](event), multi))
+        end
+    end)
 end

@@ -8,29 +8,18 @@ description = {
 
 local NAMESPACE = "RIVAL_SWORDS"
 
-utils.subscribeToEvent("me.rivaldev.mobsword.rivalmobswords.api.SwordEssenceReceiveEnchantEvent", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "Essence", NAMESPACE)
-  
-  if multi > 0 then
-    event:setEssence(boosterUtils.calculateAmount(event:getEssence(), multi))
-  end
+function onAddonStart()
+	subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordMoneyReceiveEvent", "Money", "getMoney", "setMoney")
+    subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordEssenceReceiveEnchantEvent", "Essence", "getEssence", "setEssence")
+    subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordXPGainEvent", "XP", "getXP", "setXP")
+end
 
-end)
+function subscribeAndBoost(eventName, currencyType, getMethod, setMethod)
+    utils.subscribeToEvent(eventName, function(event)
+        local multi = boosterUtils.getMulti(event:getPlayer(), currencyType, NAMESPACE)
 
-utils.subscribeToEvent("me.rivaldev.mobsword.rivalmobswords.api.SwordMoneyReceiveEvent", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "Money", NAMESPACE)
-  
-  if multi > 0 then
-    event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
-  end
-
-end)
-
-utils.subscribeToEvent("me.rivaldev.mobsword.rivalmobswords.api.SwordXPGainEvent", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "XP", NAMESPACE)
-  
-  if multi > 0 then
-    event:setXP(boosterUtils.calculateAmount(event:getXP(), multi))
-  end
-
-end)
+        if multi > 0 then
+            event[setMethod](event, boosterUtils.calculateAmount(amount, multi))
+        end
+    end)
+end

@@ -8,29 +8,18 @@ description = {
 
 local NAMESPACE = "RIVAL_HOES"
 
-utils.subscribeToEvent("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceivePreEnchantEvent", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "Essence", NAMESPACE)
-  
-  if multi > 0 then
-    event:setEssence(boosterUtils.calculateAmount(event:getEssence(), multi))
-  end
+function onAddonStart()
+	subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", "Money", "getMoney", "setMoney")
+	subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceivePreEnchantEvent", "Essence", "getEssence", "setEssence")
+    subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeXPGainEvent", "XP", "getXP", "setXP")
+end
 
-end)
+function subscribeAndBoost(eventName, currencyType, getMethod, setMethod)
+    utils.subscribeToEvent(eventName, function(event)
+        local multi = boosterUtils.getMulti(event:getPlayer(), currencyType, NAMESPACE)
 
-utils.subscribeToEvent("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "Money", NAMESPACE)
-  
-  if multi > 0 then
-    event:setMoney(boosterUtils.calculateAmount(event:getMoney(), multi))
-  end
-  
-end)
-
-utils.subscribeToEvent("me.rivaldev.harvesterhoes.api.events.HoeXPGainEvent", function(event)
-  local multi = boosterUtils.getMulti(event:getPlayer(), "XP", NAMESPACE)
-  
-  if multi > 0 then
-    event:setXP(boosterUtils.calculateAmount(event:getXP(), multi))
-  end
-  
-end)
+        if multi > 0 then
+            event[setMethod](event, boosterUtils.calculateAmount(amount, multi))
+        end
+    end)
+end
