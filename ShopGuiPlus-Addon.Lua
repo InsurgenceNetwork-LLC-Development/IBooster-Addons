@@ -4,43 +4,37 @@ import 'net.brcdev.shopgui.shop.item.ShopItem'
 name = "ShopGuiPlus-Addon"
 version = "1.0.0"
 author = "Dragon"
-description = {
-  "This addon will add",
-  "Support for ShopGuiPlus boosting"
-}
+description = {"This addon will add", "Support for ShopGuiPlus boosting"}
 
 local NAMESPACE = "SHOPGUIPLUS"
 
 Shop_Category_Restriction = {
-  enabled = false,
-  categories = { "blocks", "armor", "food" } -- list the shop categories to apply boost to
+    enabled = false,
+    categories = {"blocks", "armor", "food"} -- list the shop categories to apply boost to
 }
 
 Shop_Item_Restriction = {
-  enabled = false,
-  items = { -- list the shop items to apply boost to. Format: 'category:id...'
-    "blocks:1,4,5,9,10",
-    "ores:3,5"
-  }
+    enabled = false,
+    items = { -- list the shop items to apply boost to. Format: 'category:id...'
+    "blocks:1,4,5,9,10", "ores:3,5"}
 }
 
 utils.subscribeToEvent("net.brcdev.shopgui.event.ShopPreTransactionEvent", function(event)
 
-  if event:getShopAction() == ShopManager.ShopAction.BUY then
-    return
-  end
+    if event:getShopAction() == ShopManager.ShopAction.BUY then
+        return
+    end
 
-  local amount = event:getPrice()
-  if amount <= 0 then
-    return
-  end
+    local amount = event:getPrice()
+    if amount <= 0 then
+        return
+    end
 
-  local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), "Sell", NAMESPACE)
+    local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), "Sell", NAMESPACE)
 
-  if multi > 0 and canBoost(event) then
-    event:setPrice(boosterUtils.calculateAmount(amount, multi))
-  end
-
+    if multi > 0 and canBoost(event) then
+        event:setPrice(boosterUtils.calculateAmount(amount, multi))
+    end
 end)
 
 function canBoost(event)

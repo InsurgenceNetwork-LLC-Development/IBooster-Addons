@@ -1,16 +1,13 @@
 name = "RivalHarvesterHoes-Addon"
 version = "1.0.0"
 author = "Dragon"
-description = {
-  "This addon will add",
-  "Support for RivalHarvesterHoes boosting"
-}
+description = {"This addon will add", "Support for RivalHarvesterHoes boosting"}
 
 local NAMESPACE = "RIVAL_HOES"
 
 function onAddonStart()
-	subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", "Money", "getMoney", "setMoney")
-	subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceivePreEnchantEvent", "Essence", "getEssence", "setEssence")
+    subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", "Money", "getMoney", "setMoney")
+    subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceivePreEnchantEvent", "Essence", "getEssence", "setEssence")
     subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeXPGainEvent", "XP", "getXP", "setXP")
 end
 

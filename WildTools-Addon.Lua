@@ -1,16 +1,13 @@
 name = "WildTools-Addon"
 version = "1.0.0"
 author = "Hxtch"
-description = {
-  "This addon will add",
-  "Support for WildTools boosting"
-}
+description = {"This addon will add", "Support for WildTools boosting"}
 
 local TYPE, NAMESPACE = "Sell", "WILD_TOOLS"
 
 function onAddonStart()
-	subscribeAndBoost("com.bgsoftware.wildtools.api.events.HarvesterHoeSellEvent")
-	subscribeAndBoost("com.bgsoftware.wildtools.api.events.SellWandUseEvent")
+    subscribeAndBoost("com.bgsoftware.wildtools.api.events.HarvesterHoeSellEvent")
+    subscribeAndBoost("com.bgsoftware.wildtools.api.events.SellWandUseEvent")
 end
 
 function subscribeAndBoost(eventName)

@@ -3,17 +3,14 @@ import 'com.gamingmesh.jobs.container.CurrencyType'
 name = "JobsReborn-Addon"
 version = "1.0.0"
 author = "Dragon"
-description = {
-  "This addon will add",
-  "Support for JobsReborn boosting"
-}
+description = {"This addon will add", "Support for JobsReborn boosting"}
 
 local NAMESPACE = "JOBS_REBORN"
 
 function onAddonStart()
-	subscribeAndBoost(CurrencyType.EXP)
-	subscribeAndBoost(CurrencyType.MONEY)
-	subscribeAndBoost(CurrencyType.POINTS)
+    subscribeAndBoost(CurrencyType.EXP)
+    subscribeAndBoost(CurrencyType.MONEY)
+    subscribeAndBoost(CurrencyType.POINTS)
 end
 
 function subscribeAndBoost(currencyType)

@@ -26,15 +26,15 @@ function onAddonStart()
     end
 
     if Common:doesPluginExist("VirtualSpawner") then
-       subscribeAndBoost("net.codava.virtualspawner.api.event.PreSpawnerSellEvent", "getAmount", "setAmount")
+        subscribeAndBoost("net.codava.virtualspawner.api.event.PreSpawnerSellEvent", "getAmount", "setAmount")
     end
 
     if Common:doesPluginExist("ManifestCollector") then
-       subscribeAndBoost("com.bgsoftware.manifestcollector.api.events.CollectorSellEvent", "getPrice", "setPrice")
+        subscribeAndBoost("com.bgsoftware.manifestcollector.api.events.CollectorSellEvent", "getPrice", "setPrice")
     end
 
     if Common:doesPluginExist("Sellwand") then
-       subscribeAndBoost("me.zachary.sellwand.api.events.SellwandSellEvent", "getSellPrice", "setSellPrice")
+        subscribeAndBoost("me.zachary.sellwand.api.events.SellwandSellEvent", "getSellPrice", "setSellPrice")
     end
 
     if Common:doesPluginExist("ChunkCollector") then
@@ -46,7 +46,7 @@ function onAddonStart()
     end
 
     if Common:doesPluginExist("RivalFishingRods") then
-        subscribeAndBoost("me.rivaldev.fishingrods.api.events.FishingRodEssenceReceiveEnchantEvent", "getEssence", "setEssence")
+        subscribeAndBoost("me.rivaldev.fishingrods.api.events.FishingRodEssenceReceiveEnchantEvent", "getEssence","setEssence")
     end
 
     if Common:doesPluginExist("RivalHarvesterHoes") then
@@ -140,7 +140,7 @@ function onAddonStart()
 
 end
 
-function subscribeAndBoost(eventName , getType, setType)
+function subscribeAndBoost(eventName, getType, setType)
     utils.subscribeToEvent(eventName, function(event)
         local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
 
