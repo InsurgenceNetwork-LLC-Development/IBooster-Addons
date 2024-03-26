@@ -24,9 +24,9 @@ function onAddonStart()
     end
 
     if Common:doesPluginExist("RivalMobSwords") then
-        subscribeAndBoost("me.rivaldev.mobswords.api.events.MobSwordEssenceReceiveEnchantEvent", ESSENCE_TYPE, GET_ESSENCE, SET_ESSENCE)
-        subscribeAndBoost("me.rivaldev.mobswords.api.events.MobSwordMoneyReceiveEnchant", MONEY_TYPE, GET_MONEY, SET_MONEY)
-        subscribeAndBoost("me.rivaldev.mobswords.api.events.MobSwordXPGainEvent", XP_TYPE, GET_XP, SET_XP)
+        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordEssenceReceiveEnchantEvent", ESSENCE_TYPE, GET_ESSENCE, SET_ESSENCE)
+        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordMoneyReceiveEvent", MONEY_TYPE, GET_MONEY, SET_MONEY)
+        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordXPGainEvent", XP_TYPE, GET_XP, SET_XP)
     end
 
     if Common:doesPluginExist("RivalPickaxes") then
