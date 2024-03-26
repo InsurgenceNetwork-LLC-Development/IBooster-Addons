@@ -50,7 +50,7 @@ function onAddonStart()
     end
 
     if Common:doesPluginExist("RivalHarvesterHoes") then
-        subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HarvesterHoeEssenceReceiveEnchantEvent", "getEssence", "setEssence")
+        subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceiveEnchantEvent", "getEssence", "setEssence")
     end
 
     if Common:doesPluginExist("RivalMobSwords") then
