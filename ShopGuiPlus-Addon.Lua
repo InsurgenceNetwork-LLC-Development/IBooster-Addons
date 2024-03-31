@@ -6,6 +6,7 @@ version = "1.0.0"
 author = "Dragon"
 description = {"This addon will add", "Support for ShopGuiPlus boosting"}
 
+local TYPE = "Sell"
 local NAMESPACE = "SHOPGUIPLUS"
 
 Shop_Category_Restriction = {
@@ -30,7 +31,7 @@ utils.subscribeToEvent("net.brcdev.shopgui.event.ShopPreTransactionEvent", funct
         return
     end
 
-    local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), "Sell", NAMESPACE)
+    local multi = boosterUtils.getMulti(event:getPlayer():getPlayer(), TYPE, NAMESPACE)
 
     if multi > 0 and canBoost(event) then
         event:setPrice(boosterUtils.calculateAmount(amount, multi))

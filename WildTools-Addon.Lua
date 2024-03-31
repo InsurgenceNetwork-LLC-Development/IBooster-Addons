@@ -3,7 +3,8 @@ version = "1.0.0"
 author = "Hxtch"
 description = {"This addon will add", "Support for WildTools boosting"}
 
-local TYPE, NAMESPACE = "Sell", "WILD_TOOLS"
+local TYPE = "Sell"
+local NAMESPACE = "WILD_TOOLS"
 
 function onAddonStart()
     subscribeAndBoost("com.bgsoftware.wildtools.api.events.HarvesterHoeSellEvent")
