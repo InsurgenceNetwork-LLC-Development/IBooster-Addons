@@ -1,7 +1,7 @@
 import 'com.gamingmesh.jobs.container.CurrencyType'
 
 name = "JobsReborn-Addon"
-version = "1.0.0"
+version = "1.0.2"
 author = "Dragon"
 description = {"This addon will add", "Support for JobsReborn boosting"}
 

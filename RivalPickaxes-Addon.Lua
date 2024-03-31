@@ -1,5 +1,5 @@
 name = "RivalPickaxes-Addon"
-version = "1.0.0"
+version = "1.0.2"
 author = "Dragon"
 description = {"This addon will add", "Support for RivalPickaxes boosting"}
 

@@ -1,5 +1,5 @@
 name = "SuperMobcoins-Addon"
-version = "1.0.0"
+version = "1.0.2"
 author = "Hxtch"
 description = {"This addon will add", "Support for SuperMobcoins boosting"}
 

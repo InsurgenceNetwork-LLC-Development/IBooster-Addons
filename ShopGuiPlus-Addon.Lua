@@ -2,7 +2,7 @@ import 'net.brcdev.shopgui.shop.ShopManager'
 import 'net.brcdev.shopgui.shop.item.ShopItem'
 
 name = "ShopGuiPlus-Addon"
-version = "1.0.0"
+version = "1.0.2"
 author = "Dragon"
 description = {"This addon will add", "Support for ShopGuiPlus boosting"}
 

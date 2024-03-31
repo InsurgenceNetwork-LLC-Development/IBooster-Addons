@@ -1,7 +1,7 @@
 import 'org.insurgencedev.insurgenceboosters.libs.fo.Common'
 
 name = "AllSellBoost-Addon"
-version = "1.0.0"
+version = "1.0.2"
 author = "Hxtch"
 description = {"This addon will add", "Support for Sell boosting"}
 

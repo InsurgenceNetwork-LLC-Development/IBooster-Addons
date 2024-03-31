@@ -1,7 +1,7 @@
 import 'me.gypopo.economyshopgui.util.Transaction'
 
 name = "EconomyShopGui-Addon"
-version = "1.0.0"
+version = "1.0.2"
 author = "Hxtch"
 description = {"This addon will add", "Support for EconomyShopGui boosting"}
 
