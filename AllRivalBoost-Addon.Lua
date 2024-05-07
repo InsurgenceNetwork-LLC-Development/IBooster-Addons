@@ -17,7 +17,7 @@ function onAddonStart()
         subscribeAndBoost("me.rivaldev.fishingrods.api.events.RodXPGainEvent", XP_TYPE, GET_XP, SET_XP)
     end
 
-    if Common:doesPluginExist("RivalHarveterHoes") then
+    if Common:doesPluginExist("RivalHarvesterHoes") then
         subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceiveEnchantEvent", ESSENCE_TYPE, GET_ESSENCE, SET_ESSENCE)
         subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", MONEY_TYPE, GET_MONEY, SET_MONEY)
         subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeXPGainEvent", XP_TYPE, GET_XP, SET_XP)
