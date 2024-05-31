@@ -12,9 +12,9 @@ local GET_ESSENCE, SET_ESSENCE, GET_MONEY, SET_MONEY, GET_XP, SET_XP = "getEssen
 function onAddonStart()
 
     if Common:doesPluginExist("RivalFishingRods") then
-        subscribeAndBoost("me.rivaldev.fishingrods.api.events.RodEssenceReceiveEnchantEvent", ESSENCE_TYPE, GET_ESSENCE, SET_ESSENCE)
-        subscribeAndBoost("me.rivaldev.fishingrods.api.events.RodMoneyReceiveEnchant", MONEY_TYPE, GET_MONEY, SET_MONEY)
-        subscribeAndBoost("me.rivaldev.fishingrods.api.events.RodXPGainEvent", XP_TYPE, GET_XP, SET_XP)
+        subscribeAndBoost("me.rivaldev.fishingrod.rivalfishingrods.api.RodEssenceReceiveEvent", ESSENCE_TYPE, GET_ESSENCE, SET_ESSENCE)
+        subscribeAndBoost("me.rivaldev.fishingrod.rivalfishingrods.api.RodMoneyReceiveEvent", MONEY_TYPE, GET_MONEY, SET_MONEY)
+        subscribeAndBoost("me.rivaldev.fishingrod.rivalfishingrods.api.RodXPGainEvent", XP_TYPE, GET_XP, SET_XP)
     end
 
     if Common:doesPluginExist("RivalHarvesterHoes") then
