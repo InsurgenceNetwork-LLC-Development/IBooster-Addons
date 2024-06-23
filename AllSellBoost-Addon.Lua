@@ -46,19 +46,19 @@ function onAddonStart()
     end
 
     if Common:doesPluginExist("RivalFishingRods") then
-        subscribeAndBoost("me.rivaldev.fishingrods.api.events.RodEssenceReceiveEnchantEvent", "getEssence","setEssence")
+        subscribeAndBoost("me.rivaldev.fishingrod.rivalfishingrods.api.RodMoneyReceiveEvent", "getMoney","setMoney")
     end
 
     if Common:doesPluginExist("RivalHarvesterHoes") then
-        subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeEssenceReceiveEnchantEvent", "getEssence", "setEssence")
+        subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", "getMoney","setMoney")
     end
 
     if Common:doesPluginExist("RivalMobSwords") then
-        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordEssenceReceiveEnchantEvent", "getEssence", "setEssence")
+        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordMoneyReceiveEvent", "getMoney","setMoney")
     end
 
     if Common:doesPluginExist("RivalPickaxes") then
-        subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeEssenceReceiveEnchantEvent", "getEssence", "setEssence")
+        subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeMoneyReceiveEnchant", "getMoney","setMoney")
     end
 
     if Common:doesPluginExist("ShopGUIPlus") then
