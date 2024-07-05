@@ -5,7 +5,7 @@ version = "1.0.2"
 author = "Hxtch"
 description = {"This addon will add", "Support for EdPrison boosting"}
 
-local CURRENCY_NAMESPACE, ENCHANT_NAMESPACE = "EDP_CURRENCY", "EDP_ENCHANT"
+local CURRENCY_NAMESPACE, ENCHANT_NAMESPACE = "EDP-CURRENCY", "EDP-ENCHANT"
 
 utils.subscribeToEvent("com.edwardbelt.edprison.events.EdPrisonAddMultiplierCurrency", function(event)
     local multi = boosterUtils.getMulti(Bukkit:getPlayer(event:getUUID()), event:getCurrency(), CURRENCY_NAMESPACE)
