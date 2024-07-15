@@ -123,11 +123,14 @@ function onAddonStart()
             local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
 
             if multi > 0 then
-                if transactionType == Transaction.Type.SELL_GUI_SCREEN or transactionType ==
-                    Transaction.Type.SELL_ALL_SCREEN or transactionType == Transaction.Type.SELL_ALL_COMMAND then
-                    local prices = event:getPrices():values()
-                    for k, v in pairs(prices) do
-                        prices[k] = boosterUtils.calculateAmount(v, multi)
+                if transactionType == Transaction.Type.SELL_GUI_SCREEN or transactionType == Transaction.Type.SELL_ALL_SCREEN or transactionType == Transaction.Type.SELL_ALL_COMMAND then
+                    local prices = event:getPrices()
+                    local keys = prices:getKeys()
+                    for i = 1, #keys do
+                      local key = keys[i]
+                      local originalPrice = prices:get(key)
+                      boosterUtils.calculateAmount(originalPrice, multi)
+                      prices:put(key, newPrice)
                     end
                     return
                 end
