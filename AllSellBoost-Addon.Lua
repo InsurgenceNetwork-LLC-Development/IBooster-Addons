@@ -125,7 +125,7 @@ function onAddonStart()
             if multi > 0 then
                 if transactionType == Transaction.Type.SELL_GUI_SCREEN or transactionType ==
                     Transaction.Type.SELL_ALL_SCREEN or transactionType == Transaction.Type.SELL_ALL_COMMAND then
-                    local prices = event:getPrices().values()
+                    local prices = event:getPrices():values()
                     for k, v in pairs(prices) do
                         prices[k] = boosterUtils.calculateAmount(v, multi)
                     end
