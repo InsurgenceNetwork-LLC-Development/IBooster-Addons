@@ -7,7 +7,7 @@ local TYPE = "Sell"
 local NAMESPACE = "CHUNK_COLLECTOR"
 
 utils.subscribeToEvent("dev.asurasoftware.asuracollector.events.CollectorAutoSellEvent", function(event)
-    if event:getOfflinePlayer():getPlayer() = nil then
+    if event:getOfflinePlayer():getPlayer() == nil then
        return
     end
     local multi = boosterUtils.getMulti(event:getOfflinePlayer():getPlayer(), TYPE, NAMESPACE)
