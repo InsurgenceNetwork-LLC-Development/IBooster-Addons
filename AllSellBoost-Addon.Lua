@@ -11,54 +11,54 @@ local NAMESPACE = "GENERAL_SELL"
 function onAddonStart()
 
     if Common:doesPluginExist("ZithiumCollector") then
-        subscribeAndBoost("com.zithium.collector.api.events.CollectorSellEvent", "getPrice", "setPrice")
-        subscribeAndBoost("com.zithium.collector.api.events.CollectorSellAllEvent", "getTotalWorth", "setTotalWorth")
-        subscribeAndBoost("com.zithium.collector.api.events.CollectorAutoSellEvent", "getTotalWorth", "setTotalWorth")
+        subscribeAndBoost("com.zithium.collector.api.events.CollectorSellEvent", "getPrice", "setPrice", generalEventProcessor)
+        subscribeAndBoost("com.zithium.collector.api.events.CollectorSellAllEvent", "getTotalWorth", "setTotalWorth", generalEventProcessor)
+        subscribeAndBoost("com.zithium.collector.api.events.CollectorAutoSellEvent", "getTotalWorth", "setTotalWorth", generalEventProcessor)
     end
 
     if Common:doesPluginExist("WildTools") then
-        subscribeAndBoost("com.bgsoftware.wildtools.api.events.HarvesterHoeSellEvent", "getPrice", "setPrice")
-        subscribeAndBoost("com.bgsoftware.wildtools.api.events.SellWandUseEvent", "getPrice", "setPrice")
+        subscribeAndBoost("com.bgsoftware.wildtools.api.events.HarvesterHoeSellEvent", "getPrice", "setPrice", generalEventProcessor)
+        subscribeAndBoost("com.bgsoftware.wildtools.api.events.SellWandUseEvent", "getPrice", "setPrice", generalEventProcessor)
     end
 
     if Common:doesPluginExist("WildChests") then
-        subscribeAndBoost("com.bgsoftware.wildchests.api.events.SellChestTaskEvent", "getMultiplier", "setMultiplier")
+        subscribeAndBoost("com.bgsoftware.wildchests.api.events.SellChestTaskEvent", "getMultiplier", "setMultiplier", generalEventProcessor)
     end
 
     if Common:doesPluginExist("VirtualSpawner") then
-        subscribeAndBoost("net.codava.virtualspawner.api.event.PreSpawnerSellEvent", "getAmount", "setAmount")
+        subscribeAndBoost("net.codava.virtualspawner.api.event.PreSpawnerSellEvent", "getAmount", "setAmount", generalEventProcessor)
     end
 
     if Common:doesPluginExist("ManifestCollector") then
-        subscribeAndBoost("com.bgsoftware.manifestcollector.api.events.CollectorSellEvent", "getPrice", "setPrice")
+        subscribeAndBoost("com.bgsoftware.manifestcollector.api.events.CollectorSellEvent", "getPrice", "setPrice", generalEventProcessor)
     end
 
     if Common:doesPluginExist("Sellwand") then
-        subscribeAndBoost("me.zachary.sellwand.api.events.SellwandSellEvent", "getSellPrice", "setSellPrice")
+        subscribeAndBoost("me.zachary.sellwand.api.events.SellwandSellEvent", "getSellPrice", "setSellPrice", generalEventProcessor)
     end
 
     if Common:doesPluginExist("ChunkCollector") then
-        subscribeAndBoost("dev.kbejj.chunkcollector.events.CollectorSellEvent", "getSellPrice", "setSellPrice")
+        subscribeAndBoost("dev.kbejj.chunkcollector.events.CollectorSellEvent", "getSellPrice", "setSellPrice", generalEventProcessor)
     end
 
     if Common:doesPluginExist("DeluxeSellwands") then
-        subscribeAndBoost("dev.norska.dsw.api.DeluxeSellwandSellEvent", "getMoney", "setMoney")
+        subscribeAndBoost("dev.norska.dsw.api.DeluxeSellwandSellEvent", "getMoney", "setMoney", generalEventProcessor)
     end
 
     if Common:doesPluginExist("RivalFishingRods") then
-        subscribeAndBoost("me.rivaldev.fishingrod.rivalfishingrods.api.RodMoneyReceiveEvent", "getMoney","setMoney")
+        subscribeAndBoost("me.rivaldev.fishingrod.rivalfishingrods.api.RodMoneyReceiveEvent", "getMoney","setMoney", generalEventProcessor)
     end
 
     if Common:doesPluginExist("RivalHarvesterHoes") then
-        subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", "getMoney","setMoney")
+        subscribeAndBoost("me.rivaldev.harvesterhoes.api.events.HoeMoneyReceiveEnchant", "getMoney","setMoney", generalEventProcessor)
     end
 
     if Common:doesPluginExist("RivalMobSwords") then
-        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordMoneyReceiveEvent", "getMoney","setMoney")
+        subscribeAndBoost("me.rivaldev.mobsword.rivalmobswords.api.SwordMoneyReceiveEvent", "getMoney","setMoney", generalEventProcessor)
     end
 
     if Common:doesPluginExist("RivalPickaxes") then
-        subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeMoneyReceiveEnchant", "getMoney","setMoney")
+        subscribeAndBoost("me.rivaldev.pickaxes.api.events.PickaxeMoneyReceiveEnchant", "getMoney","setMoney", generalEventProcessor)
     end
 
     if Common:doesPluginExist("ShopGUIPlus") then
