@@ -1,4 +1,8 @@
-import 'org.insurgencedev.insurgenceboosters.libs.fo.Common'
+local IMPORT_FROM = { --Importing required classes from our plugins, dont put your imports here put them outside
+    ["IBooster"] = function() import('org.insurgencedev.insurgenceboosters.libs.fo.Common') end,
+    ["ISets"] = function() import('org.insurgencedev.insurgencesets.libs.fo.Common') end
+}
+IMPORT_FROM[plugin]()
 
 name = "AllRivalBoost-Addon"
 version = "1.0.2"

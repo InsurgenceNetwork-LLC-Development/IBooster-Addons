@@ -141,14 +141,32 @@ function onAddonStart()
 
     end
 
+    if Common:doesPluginExist("VoidChest") then
+        import 'com.georgev22.voidchest.api.VoidChestAPI'
+        import 'com.georgev22.voidchest.api.storage.data.IPlayerData'
+        subscribeAndBoost("org.insurgencedev.insurgenceboosters.events.IBoosterStartEvent", nil, nil, voidChestEventProcessor)
+    end
+
 end
 
-function subscribeAndBoost(eventName, getType, setType)
+function subscribeAndBoost(eventName, getType, setType, eventProcessor)
     utils.subscribeToEvent(eventName, function(event)
         local multi = boosterUtils.getMulti(event:getPlayer(), TYPE, NAMESPACE)
 
         if multi > 0 then
-            event[setType](event, boosterUtils.calculateAmount(event[getType](event), multi))
+            eventProcessor(event, multi, getType, setType)
         end
     end)
+end
+
+function generalEventProcessor(event, multi, getType, setType)
+  event[setType](event, boosterUtils.calculateAmount(event[getType](event), multi))
+end
+
+function voidChestEventProcessor(event, multi, getType, setType)
+    local uuid = event:getPlayer():getUniqueId()
+    local playerData = VoidChestAPI:getInstance():playerManager():getEntity(uuid, true)
+    local result = os.time() * 1000 + (1000 * event:getBoosterData():getTimeLeft())
+    playerData:booster():boostTime(result)
+    playerData:booster():booster(multi)
 end
